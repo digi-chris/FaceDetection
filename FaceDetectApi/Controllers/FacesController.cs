@@ -39,7 +39,7 @@ namespace FaceDetectApi.Controllers
                             if (img != null)
                             {
                                 var grayframe = img.Convert<Emgu.CV.Structure.Gray, byte>();
-                                var faces = cc.DetectMultiScale(grayframe);//, 0.9, 10, Size.Empty);
+                                var faces = cc.DetectMultiScale(grayframe);//, 1.1, 10, Size.Empty);
                                 int faceCount = 0;
                                 foreach (var face in faces)
                                 {
