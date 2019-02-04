@@ -20,7 +20,7 @@ namespace FaceDetectApi.Controllers
             if (!Request.Content.IsMimeMultipartContent())
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 
-            Emgu.CV.CascadeClassifier cc = new Emgu.CV.CascadeClassifier("haarcascade_frontalface_alt_tree.xml");
+            Emgu.CV.CascadeClassifier cc = new Emgu.CV.CascadeClassifier(System.Web.Hosting.HostingEnvironment.MapPath("/haarcascade_frontalface_alt_tree.xml"));
             var provider = new MultipartMemoryStreamProvider();
             await Request.Content.ReadAsMultipartAsync(provider);
             foreach (var file in provider.Contents)
@@ -72,7 +72,7 @@ namespace FaceDetectApi.Controllers
                 }
             }
 
-            return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
     }
 }
